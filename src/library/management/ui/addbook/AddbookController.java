@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import library.management.database.DatabaseHelper;
 
 public class AddbookController implements Initializable {
 
@@ -24,16 +26,52 @@ public class AddbookController implements Initializable {
     @FXML
     private JFXButton canceladdbook;
 
+    DatabaseHelper databaseHelper;
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        databaseHelper = new DatabaseHelper();
         
     }    
 
     @FXML
     private void addbook(ActionEvent event) {
+        String bookID = bookidtf.getText();
+        String bookAuthor = bookauthortf.getText();
+        String bookTitle = booktitletf.getText();
+        String bookPublisher = publishertf.getText();
+        
+        if(bookID.isEmpty()||bookAuthor.isEmpty()||bookTitle.isEmpty()||bookPublisher.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter in all fields");
+            alert.showAndWait();
+            return;
+        }
+        String qu = "INSERT INTO BOOK VALUES("+
+                "'" +bookID +"'"+
+                "'" +bookTitle +"'"+
+                "'" +bookAuthor +"'"+
+                "'" +bookPublisher +"'"+
+                "" +bookID +""+
+                ")";
+        System.out.println("qu");
+        if(databaseHelper.execAction(qu)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Success");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Failed");
+            alert.showAndWait();
+        }
+        
+        
     }
-
+    
     @FXML
     private void canceladdbook(ActionEvent event) {
     }
