@@ -33,8 +33,8 @@
             </JFXTextField>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="saveaddbook" prefHeight="73.0" prefWidth="200.0" styleClass="jfx-button" stylesheets="@addbook.css" text="Save" />
-                  <JFXButton fx:id="canceladdbook" prefHeight="64.0" prefWidth="200.0" styleClass="jfx-button" stylesheets="@addbook.css" text="Cancel" />
+                  <JFXButton fx:id="saveaddbook" onAction="#addbook" prefHeight="73.0" prefWidth="200.0" styleClass="jfx-button" stylesheets="@addbook.css" text="Save" />
+                  <JFXButton fx:id="canceladdbook" onAction="#canceladdbook" prefHeight="64.0" prefWidth="200.0" styleClass="jfx-button" stylesheets="@addbook.css" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
